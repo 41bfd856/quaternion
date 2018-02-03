@@ -1,0 +1,17 @@
+sudo: false
+language: cpp
+group: beta
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+
+install:
+  - export PATH="`pwd`/build:${PATH}"
+  - wget https://github.com/ninja-build/ninja/releases/download/v1.7.2/ninja-linux.zip && unzip -q ninja-linux.zip -d build
+  - pip install meson
+
+script:
+    - meson src build
+    - ninja -C build
